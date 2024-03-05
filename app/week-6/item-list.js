@@ -70,9 +70,9 @@ function ItemList({ items }) {
           onClick={() => setSortBy("category-group")}>
           Grouped Cagetory
         </button>
-        <label className="absolute top-20 left-240  text-gray-600 text-xs italic">
+        {/* <label className="absolute top-20 left-240  text-gray-600 text-xs italic">
           "Grouped Category" is an optional extra challenge
-        </label>
+        </label> */}
       </div>
       <ul>
         {sortBy === "category-group" &&
