@@ -29,7 +29,7 @@ function Page() {
     setSelectedItemName(itemName);
   };
 
-  if (!user) return;
+  if (!user) return "Your need to be signed in to view this page.";
 
   return (
     <main className="bg-slate-950">
