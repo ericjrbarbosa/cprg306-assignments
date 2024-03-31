@@ -8,7 +8,6 @@ export const getItems = async ({ userId }) => {
   const items = [];
 
   querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
     items.push(doc.data());
   });
 
