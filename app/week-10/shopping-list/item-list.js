@@ -3,7 +3,7 @@
 import Item from "./item";
 import { useState } from "react";
 
-function ItemList({ items, onItemSelect }) {
+function ItemList({ items, onItemSelect, onItemDelete }) {
   const [sortBy, setSortBy] = useState("name");
   const itemsGrouped = items.reduce((acc, item) => {
     if (!acc[item.category]) {
@@ -81,13 +81,16 @@ function ItemList({ items, onItemSelect }) {
                   <h3 className="capitalize text-xl">{key}</h3>
                   <ul>
                     {sortItems(itemsGrouped[key], "name").map((item) => (
-                      <Item
-                        category={item.category}
-                        key={item.id}
-                        name={item.name}
-                        quantity={item.quantity}
-                        onSelect={() => onItemSelect({ item })}
-                      />
+                      <>
+                        <Item
+                          category={item.category}
+                          key={item.id}
+                          name={item.name}
+                          quantity={item.quantity}
+                          onSelect={() => onItemSelect({ item })}
+                          onDelete={() => onItemDelete({ item })}
+                        />
+                      </>
                     ))}
                   </ul>
                 </div>
@@ -101,6 +104,7 @@ function ItemList({ items, onItemSelect }) {
               name={item.name}
               quantity={item.quantity}
               onSelect={() => onItemSelect({ item })}
+              onDelete={() => onItemDelete({ item })}
             />
           ))}
       </ul>

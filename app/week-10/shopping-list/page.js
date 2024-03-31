@@ -6,7 +6,11 @@ import NewItem from "./new-item";
 import { useState } from "react";
 import MealIdeas from "./meal-ideas";
 import { useUserAuth } from "../_utils/auth-context";
-import { getItems, addItem } from "../_services/shopping-list-service";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+} from "../_services/shopping-list-service";
 import { useEffect } from "react";
 
 function Page() {
@@ -24,6 +28,12 @@ function Page() {
     const itemId = await addItem({ userId: user.uid, item });
     item.id = itemId;
     setItems([...items, item]);
+  };
+
+  const handleDeleteItem = async ({ item }) => {
+    console.log(item);
+    await deleteItem({ userId: user.uid, item });
+    setItems([...items.filter((_item) => _item.id !== item.id)]);
   };
 
   const handleItemSelect = ({ item }) => {
@@ -54,6 +64,7 @@ function Page() {
             <ItemList
               items={items}
               onItemSelect={handleItemSelect}
+              onItemDelete={handleDeleteItem}
             />
           </div>
           <div className="flex-1 max-w-sm m-2">
